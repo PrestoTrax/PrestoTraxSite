@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "7MqiQI82XlULsQAZ3/tRnrTFfpqeMO6OyC+FQH/fgd2Gh3Ws+scnIXuuSReAR5mix1KI1RPjiArbd12wuTw9ZQ==",
+  "success": true,
+  "projectFilePath": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\PrestoTraxSite.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\poker\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
