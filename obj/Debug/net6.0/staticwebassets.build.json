@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fPUpHMOaX0OciL7KtauIscy4J6qe9ToVAtDQlZFSRuU=",
+  "Hash": "QcuHNnvwqhbO7CzOWZo9rignazL2Y+VYJGJbbm+kOR8=",
   "Source": "PrestoTraxSite",
   "BasePath": "_content/PrestoTraxSite",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\images\\transparent-x-mark-4.png",
+      "SourceId": "PrestoTraxSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\",
+      "BasePath": "_content/PrestoTraxSite",
+      "RelativePath": "images/transparent-x-mark-4.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\transparent-x-mark-4.png"
+    },
+    {
+      "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\images\\x-mark-16.png",
+      "SourceId": "PrestoTraxSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\",
+      "BasePath": "_content/PrestoTraxSite",
+      "RelativePath": "images/x-mark-16.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\x-mark-16.png"
     },
     {
       "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\js\\site.js",

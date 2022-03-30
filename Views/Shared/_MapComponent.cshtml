@@ -34,6 +34,10 @@
     <body>
         <div id="map">
         </div>
+        <div>
+            <p>Map Center Location:</p>
+            <p id="currentLocation"></p>
+        </div>
         <div id="recentLocations">
             <table id="LocationTable">
                 <colgroup>
@@ -76,7 +80,18 @@
                 center: [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude],
                 zoom: 13
             });
-            const marker = new mapboxgl.Marker({color: "#0028ED"}).setLngLat([@Model[0].DeviceLongitude, @Model[0].DeviceLatitude]).addTo(map);
+            const marker = new mapboxgl.Marker({color: "#ED0000"}).setLngLat([@Model[0].DeviceLongitude, @Model[0].DeviceLatitude]).addTo(map);
+            let img = document.createElement('img');
+            img.src="../images/x-mark-16.png";
+            let centerMarker = new mapboxgl.Marker(img).setLngLat(map.getCenter()).addTo(map);
+            map.on("render", (e) => {
+                let el = document.getElementById("currentLocation");
+                let lngLat = map.getCenter();
+                centerMarker.setLngLat(lngLat);
+                el.innerText = `Latitude: ${lngLat.lat}, Longitude: ${lngLat.lng}`;
+            });
+            
+            
         </script>
     </body>
     

@@ -18,16 +18,16 @@ namespace PrestoTraxSite.Controllers
             _userService = new UserDataService();
         }
 
-        public async Task<string> Login()
+        public async Task<IActionResult> Login()
         {
             ResultModel result = await _userService.AuthenticateUser(new UserModel(-1, "Mackslemus1", null, "G00dP@ssw0rd"));
-            if (result != null)
+            if(result.Code < 400)
             {
-                return "success";
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                return "failure";
+                return RedirectToAction("Error", "Home");
             }
             
         }

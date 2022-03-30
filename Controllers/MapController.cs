@@ -13,12 +13,12 @@ namespace PrestoTraxSite.Controllers
             _recordService = new();
         }
         
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
         
-        public async Task<IActionResult> MapComponent()
+        public async Task<IActionResult> Index()
         {
             List<RecordModel> userRecords = await _recordService.GetUserRecords(8);
             //Console.WriteLine($"{location.Longitude}, {location.Latitude}");

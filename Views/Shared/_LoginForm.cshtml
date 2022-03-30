@@ -1,0 +1,11 @@
+﻿@model ResultModel
+@{
+    ViewBag.Title = "User Result";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (@Model != null)
+    {
+        <script>
+            alert(`Error: @Model.ErrorType\n Message: @Model.Message)`);
+        </script>
+    }
+}
