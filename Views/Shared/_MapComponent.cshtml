@@ -84,7 +84,7 @@
                 container: 'map',
                 style: 'mapbox://styles/max1mus7/cl1cvqqsl008c14nxldoun4vu',
                 center: [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude],
-                zoom: 13
+                zoom: 15
             });
             const marker = new mapboxgl.Marker({color: "#ED0000"}).setLngLat([@Model[0].DeviceLongitude, @Model[0].DeviceLatitude]).addTo(map);
             let img = document.createElement('img');
