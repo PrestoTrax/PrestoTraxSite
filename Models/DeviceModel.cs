@@ -44,7 +44,7 @@
 
         public void PopulateRecentLocation()
         { 
-            this.Location = GetRecentRecord().Location;
+            //this.Location = GetRecentRecord().Location;
         }
     }
 }

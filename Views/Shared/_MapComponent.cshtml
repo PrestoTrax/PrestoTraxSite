@@ -1,0 +1,85 @@
+﻿@model List<RecordModel>
+
+<html>
+    <head>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 15%;
+            left: 10%;
+            height: 30%;
+            width: 30%;
+        }
+        #LocationTable {
+            text-align: center;
+            position: absolute;
+            border-collapse: collapse;
+            top: 15%;
+            right: 10%;
+            height: 30%;
+            width: 30%;
+        }
+        table, th, td{
+            border: 1px solid black;
+        }
+    </style>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <div id="recentLocations">
+            <table id="LocationTable">
+                <colgroup>
+                    <col span="1" style="width:15%"/>
+                    <col span="1" style="width:25%"/>
+                    <col span="1" style="width:25%"/>
+                    <col span="1" style="width:30%"/>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <td colspan="4">This table holds the recent locations your device has been(up to 20).</td>
+                    </tr>
+                    <tr>
+                        <th>Count</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Pinged At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @for(int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>@(i+1)</td>
+                        <td>@Model[i].DeviceLatitude</td>
+                        <td>@Model[i].DeviceLongitude</td>
+                        <td>@(Model[i].CreatedAt.ToString())</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <script>
+            
+            mapboxgl.accessToken = 'pk.eyJ1IjoibWF4MW11czciLCJhIjoiY2wxY3ZrNm5iMGJsODNibXJwaXF0ZzhnbCJ9.GcVTiVAeOU0yQPPWiT-Lww';
+            
+            let map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/max1mus7/cl1cvqqsl008c14nxldoun4vu',
+                center: [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude],
+                zoom: 13
+            });
+            const marker = new mapboxgl.Marker({color: "#0028ED"}).setLngLat([@Model[0].DeviceLongitude, @Model[0].DeviceLatitude]).addTo(map);
+        </script>
+    </body>
+    
+</html>
+
+

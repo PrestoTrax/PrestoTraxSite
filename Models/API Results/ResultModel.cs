@@ -19,5 +19,11 @@
             Message = message;
         }
 
+        public ResultModel(int code, string message)
+        {
+            Code = code;
+            Message = message;
+        }
+
     }
 }
