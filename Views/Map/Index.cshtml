@@ -14,6 +14,12 @@
         <div id="dynaMap">
             @{await Html.RenderPartialAsync("_MapComponent", @Model);}
         </div>
+        <div>
+            <label for="currentLocMarker">Recent Locations:</label>
+            <img src="../images/black-x.png" id="currentLocMarker" />
+            <label for="centerLocMarker">Map Center</label>
+            <img src="../images/x-mark-16.png" id="centerLocMarker" />
+        </div>
         <div id="currLoc" style="padding: 2px;">
             <p>Map Center Location:</p>
             <p id="currentLocation"></p>
