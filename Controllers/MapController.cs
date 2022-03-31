@@ -20,9 +20,22 @@ namespace PrestoTraxSite.Controllers
         
         public async Task<IActionResult> Index()
         {
-            List<RecordModel> userRecords = await _recordService.GetUserRecords(8);
+            List<RecordModel> userRecords = await GetRecordsAsync();
             //Console.WriteLine($"{location.Longitude}, {location.Latitude}");
-            return View("_MapComponent", userRecords);
+            return View(userRecords);
+        }
+        [Route("/Map/GetRecordsAsync")]
+        public async Task<List<RecordModel>> GetRecordsAsync()
+        {
+            List<RecordModel> userRecords = await _recordService.GetUserRecords(8);
+            return userRecords;
+        }
+
+        public async Task<IActionResult> GetMap()
+        {
+            List<RecordModel> userRecords = await GetRecordsAsync();
+            //Console.WriteLine($"{location.Longitude}, {location.Latitude}");
+            return PartialView("_MapComponent", userRecords);
         }
     }
 }

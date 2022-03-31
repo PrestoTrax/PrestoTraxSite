@@ -5,29 +5,25 @@
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
         #map {
-            position: absolute;
-            top: 15%;
-            left: 10%;
-            height: 30%;
-            width: 30%;
-        }
+                position: absolute;
+                top: 15%;
+                left: 10%;
+                height: 30%;
+                width: 30%;
+                display: block;
+            }
         #LocationTable {
             text-align: center;
             position: absolute;
             border-collapse: collapse;
             top: 15%;
             right: 10%;
-            height: 30%;
             width: 30%;
         }
         #currLoc{
-            position: absolute;
+            display:block;
+            position: relative;
             top: 50%;
             left: 10%;
 
@@ -38,12 +34,12 @@
     </style>
     </head>
     <body>
-        <div id="map">
-        </div>
+        <div id="map"></div>
         <div id="currLoc">
             <p>Map Center Location:</p>
             <p id="currentLocation"></p>
         </div>
+        
         <div id="recentLocations">
             <table id="LocationTable">
                 <colgroup>
@@ -77,26 +73,6 @@
             </table>
         </div>
         <script>
-            
-            mapboxgl.accessToken = 'pk.eyJ1IjoibWF4MW11czciLCJhIjoiY2wxY3ZrNm5iMGJsODNibXJwaXF0ZzhnbCJ9.GcVTiVAeOU0yQPPWiT-Lww';
-            
-            let map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/max1mus7/cl1cvqqsl008c14nxldoun4vu',
-                center: [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude],
-                zoom: 15
-            });
-            const marker = new mapboxgl.Marker({color: "#ED0000"}).setLngLat([@Model[0].DeviceLongitude, @Model[0].DeviceLatitude]).addTo(map);
-            let img = document.createElement('img');
-            img.src="../images/x-mark-16.png";
-            let centerMarker = new mapboxgl.Marker(img).setLngLat(map.getCenter()).addTo(map);
-            map.on("render", (e) => {
-                let el = document.getElementById("currentLocation");
-                let lngLat = map.getCenter();
-                centerMarker.setLngLat(lngLat);
-                el.innerText = `Latitude: ${lngLat.lat}, Longitude: ${lngLat.lng}`;
-            });
-            
             
         </script>
     </body>

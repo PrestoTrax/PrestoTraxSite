@@ -1,13 +1,90 @@
 ﻿@model List<RecordModel>
-@{
-}
 <html>
     <head>
-        
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+        <style>
+            #map {
+                position: absolute;
+                top: 15%;
+                left: 10%;
+                height: 30%;
+                width: 30%;
+                display: block;
+            }
+            img{
+                width: 5px;
+                height: 5px;
+            }
+        </style>
     </head>
     <body>
-        <div>
-            @Html.RenderPartialAsync("_MapComponent", @Model)
+        <div id="dynaMap">
+            @Html.RenderPartialAsync("_MapComponent", @Model);
         </div>
+        <button id="centerButton" onclick="goToCenter()">Jump to Current Location</button>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            mapboxgl.accessToken = 'pk.eyJ1IjoibWF4MW11czciLCJhIjoiY2wxY3ZrNm5iMGJsODNibXJwaXF0ZzhnbCJ9.GcVTiVAeOU0yQPPWiT-Lww';
+            var map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/max1mus7/cl1cvqqsl008c14nxldoun4vu',
+                    center: [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude],
+                    zoom: 15
+            });
+            var marker = new mapboxgl.Marker({color: "#ED0000"}).setLngLat([@Model[0].DeviceLongitude, @Model[0].DeviceLatitude]).addTo(map);
+            var img = document.createElement('img');
+            img.src="../images/x-mark-16.png";
+            var centerMarker = new mapboxgl.Marker(img).setLngLat(map.getCenter()).addTo(map);
+            map.on("render", (e) => {
+                 let el = document.getElementById("currentLocation");
+                 let lngLat = map.getCenter();
+                 centerMarker.setLngLat(lngLat);
+                 el.innerText = `Latitude: ${lngLat.lat}, Longitude: ${lngLat.lng}`;
+            });
+            img = document.createElement('img');
+            img.src="../images/black-x.png";
+
+            let currLoc = [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude];
+            
+            function getCurrent(records){
+                marker.setLngLat([records[0].deviceLongitude, records[0].deviceLatitude]);
+                
+                currLoc = [records[0].deviceLongitude, records[0].deviceLatitude];
+                console.log(currLoc);
+            }
+            
+            function goToCenter(){
+                console.log('click');
+                console.log(currLoc);
+                map.panTo(currLoc);
+            }
+            
+            function loadMap() {
+                $.ajax({
+                    url: '@Url.Action("GetRecordsAsync", "Map")',
+                    type: 'get',
+                    cache: false,
+                    async: true,
+                    //data: { id: "frmUser" },
+                    success: function(result){
+                        getCurrent(result);  
+                    }
+                });
+            }
+            
+            $(document).ready(function(){
+                function RefreshPartial(){
+                    //this will wait 3 seconds and then fire the load partial function
+                    setTimeout(function(){
+                        loadMap();
+                        //recall this function so that it will continue to loop
+                        RefreshPartial();
+                    }, 5000);
+                }
+                //initialize the loop
+            RefreshPartial();
+            }); 
+        </script>
     </body>
 </html>
