@@ -42,8 +42,6 @@
                  centerMarker.setLngLat(lngLat);
                  el.innerText = `Latitude: ${lngLat.lat}, Longitude: ${lngLat.lng}`;
             });
-            img = document.createElement('img');
-            img.src="../images/black-x.png";
 
             let currLoc = [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude];
             
@@ -51,6 +49,14 @@
                 marker.setLngLat([records[0].deviceLongitude, records[0].deviceLatitude]);
                 
                 currLoc = [records[0].deviceLongitude, records[0].deviceLatitude];
+
+                for(var i = 0; i < records.length; i++) {
+                    console.log('newMarker');
+                    console.log([records[i].deviceLongitude, records[i].deviceLatitude]);
+                    img = document.createElement('img');
+                    img.src="../images/black-x.png";
+                    new mapboxgl.Marker(img).setLngLat([records[i].deviceLongitude, records[i].deviceLatitude]).addTo(map);
+                }
                 console.log(currLoc);
             }
             
