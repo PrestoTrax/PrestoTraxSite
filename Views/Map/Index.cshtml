@@ -24,7 +24,7 @@
             <p>Map Center Location:</p>
             <p id="currentLocation"></p>
         </div>
-        <button id="centerButton" onclick="goToCenter()">Jump to Current Location</button>
+        <button id="centerButton" onclick="goToCenter()">Jump to Device Location</button>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript">
             mapboxgl.accessToken = 'pk.eyJ1IjoibWF4MW11czciLCJhIjoiY2wxY3ZrNm5iMGJsODNibXJwaXF0ZzhnbCJ9.GcVTiVAeOU0yQPPWiT-Lww';
@@ -46,21 +46,28 @@
                  centerMarker.setLngLat(lngLat);
                  el.innerText = `Latitude: ${lat}, Longitude: ${lng}`;
             });
-
-            let currLoc = [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude];
             
+            let currLoc = [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude];
+            let markerArray = [];
+            function plotRecentLocs(records){
+                markerArray = [];
+                for(let i = 0; i < records.length; i++) {
+                    img = document.createElement('img');
+                    img.src="../images/black-x.png";
+                    markerArray.push(new mapboxgl.Marker(img).setLngLat([records[i].deviceLongitude, records[i].deviceLatitude]).addTo(map));
+                }
+            }
             function getCurrent(records){
+                if(markerArray.length > 0){
+                    for(let i = 0; i < markerArray.length; i++){
+                        markerArray[i].remove();
+                    }
+                }
+                //console.log(map.listImages());
                 marker.setLngLat([records[0].deviceLongitude, records[0].deviceLatitude]);
                 
                 currLoc = [records[0].deviceLongitude, records[0].deviceLatitude];
-
-                for(let i = 0; i < records.length; i++) {
-                    console.log('newMarker');
-                    console.log([records[i].deviceLongitude.slice(0,7), records[i].deviceLatitude.slice(0,7)]);
-                    img = document.createElement('img');
-                    img.src="../images/black-x.png";
-                    new mapboxgl.Marker(img).setLngLat([records[i].deviceLongitude, records[i].deviceLatitude]).addTo(map);
-                }
+                plotRecentLocs(records);
                 //console.log(currLoc);
             }
             
@@ -84,6 +91,7 @@
             }
             
             $(document).ready(function(){
+                loadMap();
                 function RefreshPartial(){
                     //this will wait 3 seconds and then fire the load partial function
                     setTimeout(function(){
@@ -94,6 +102,7 @@
                 }
                 //initialize the loop
             RefreshPartial();
+            
             }); 
         </script>
     </body>
