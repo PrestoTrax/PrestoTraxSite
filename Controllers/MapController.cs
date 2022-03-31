@@ -31,11 +31,5 @@ namespace PrestoTraxSite.Controllers
             return userRecords;
         }
 
-        public async Task<IActionResult> GetMap()
-        {
-            List<RecordModel> userRecords = await GetRecordsAsync();
-            //Console.WriteLine($"{location.Longitude}, {location.Latitude}");
-            return PartialView("_MapComponent", userRecords);
-        }
     }
 }

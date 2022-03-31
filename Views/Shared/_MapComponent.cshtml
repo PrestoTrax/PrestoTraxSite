@@ -6,27 +6,23 @@
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
     <style>
         #map {
-                position: absolute;
+                position: relative;
                 top: 15%;
-                left: 10%;
-                height: 30%;
-                width: 30%;
-                display: block;
+                min-height: 325px;
+                max-height: 1500px;
+                min-width: 625px;
+                max-width: 2700px;
+                display: inline-block;
             }
         #LocationTable {
             text-align: center;
-            position: absolute;
+            position: relative;
             border-collapse: collapse;
             top: 15%;
             right: 10%;
-            width: 30%;
-        }
-        #currLoc{
-            display:block;
-            position: relative;
-            top: 50%;
-            left: 10%;
-
+            min-height: fit-content;
+            max-height: fit-content;
+            min-width: fit-content;
         }
         table, th, td{
             border: 1px solid black;
@@ -35,12 +31,9 @@
     </head>
     <body>
         <div id="map"></div>
-        <div id="currLoc">
-            <p>Map Center Location:</p>
-            <p id="currentLocation"></p>
-        </div>
         
-        <div id="recentLocations">
+        
+        <div id="recentLocations" style="display:inline-block; float: right;">
             <table id="LocationTable">
                 <colgroup>
                     <col span="1" style="width:15%"/>
@@ -53,7 +46,7 @@
                         <td colspan="4">This table holds the recent locations your device has been(up to 20).</td>
                     </tr>
                     <tr>
-                        <th>Count</th>
+                        <th></th>
                         <th>Latitude</th>
                         <th>Longitude</th>
                         <th>Pinged At</th>
