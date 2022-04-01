@@ -5,15 +5,6 @@
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
     <style>
-        #map {
-                position: relative;
-                top: 15%;
-                min-height: 325px;
-                max-height: 1500px;
-                min-width: 625px;
-                max-width: 2700px;
-                display: inline-block;
-            }
         #LocationTable {
             text-align: center;
             position: relative;
@@ -23,6 +14,10 @@
             min-height: fit-content;
             max-height: fit-content;
             min-width: fit-content;
+            display:inline-block
+        }
+        #recentLocations {
+            display:inline-block; float: right;
         }
         table, th, td{
             border: 1px solid black;
@@ -30,10 +25,9 @@
     </style>
     </head>
     <body>
-        <div id="map"></div>
+
         
-        
-        <div id="recentLocations" style="display:inline-block; float: right;">
+        <div id="recentLocations">
             <table id="LocationTable">
                 <colgroup>
                     <col span="1" style="width:15%"/>

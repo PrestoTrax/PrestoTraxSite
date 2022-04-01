@@ -31,5 +31,11 @@ namespace PrestoTraxSite.Controllers
             return userRecords;
         }
 
+        public async Task<IActionResult> GetMapComponent()
+        {
+            List<RecordModel> userRecords = await _recordService.GetUserRecords(8);
+            return PartialView("_MapComponent", userRecords);
+        }
+
     }
 }

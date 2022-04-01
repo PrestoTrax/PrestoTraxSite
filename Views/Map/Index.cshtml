@@ -4,14 +4,29 @@
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
         <style>
+            #map {
+                position: relative;
+                top: 15%;
+                min-height: 325px;
+                max-height: 1500px;
+                min-width: 625px;
+                max-width: 2700px;
+                display: inline-block;
+            }
             img{
                 width: 5px;
                 height: 5px;
             }
+            #dynaMap {
+                display:inline-block; 
+                float: right;
+            }
         </style>
     </head>
     <body>
+        <div id="map"></div>
         <div id="dynaMap">
+            
             @{await Html.RenderPartialAsync("_MapComponent", @Model);}
         </div>
         <div>
@@ -88,6 +103,18 @@
                         getCurrent(result);  
                     }
                 });
+
+            $.ajax({
+                url: '@Url.Action("GetMapComponent", "Map")',
+                type: 'get',
+                cache: false,
+                async: true,
+                //data: { id: "frmUser" },
+                success: function(result){
+                    console.log("refreshTabl");
+                    $('#dynaMap').load(result);
+                }
+            });
             }
             
             $(document).ready(function(){
