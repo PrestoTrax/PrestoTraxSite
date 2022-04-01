@@ -26,7 +26,6 @@
     <body>
         <div id="map"></div>
         <div id="dynaMap">
-            
             @{await Html.RenderPartialAsync("_MapComponent", @Model);}
         </div>
         <div>
@@ -100,7 +99,7 @@
                     async: true,
                     //data: { id: "frmUser" },
                     success: function(result){
-                        getCurrent(result);  
+                        getCurrent(result);
                     }
                 });
 
@@ -112,7 +111,8 @@
                 //data: { id: "frmUser" },
                 success: function(result){
                     console.log("refreshTabl");
-                    $('#dynaMap').load(result);
+                    $("#dynaMap").html(result);
+                    //$('#dynaMap').load(result);
                 }
             });
             }
