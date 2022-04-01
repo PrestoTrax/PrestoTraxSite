@@ -59,7 +59,7 @@
                         <td>@(i+1)</td>
                         <td>@Model[i].DeviceLatitude</td>
                         <td>@Model[i].DeviceLongitude</td>
-                        <td>@(Model[i].CreatedAt.ToString())</td>
+                        <td>@(Model[i].CreatedAt.ToLocalTime().ToString())</td>
                     </tr>
                 }
                 </tbody>
