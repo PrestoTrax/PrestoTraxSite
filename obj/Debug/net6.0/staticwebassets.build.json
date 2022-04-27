@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "U7KGhZwh7NXMtGcM8F1DntZQymQ6sqXDOU31lWYqjzE=",
+  "Hash": "zdvZf/s3dM5q3PUa98DN9XDQTBez2r2qcgMg8LYXmGE=",
   "Source": "PrestoTraxSite",
   "BasePath": "_content/PrestoTraxSite",
   "Mode": "Default",
@@ -51,6 +51,23 @@
       "OriginalItemSpec": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\PrestoTraxSite.bundle.scp.css"
     },
     {
+      "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\css\\MapStyle.css",
+      "SourceId": "PrestoTraxSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\",
+      "BasePath": "_content/PrestoTraxSite",
+      "RelativePath": "css/MapStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\MapStyle.css"
+    },
+    {
       "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\css\\site.css",
       "SourceId": "PrestoTraxSite",
       "SourceType": "Discovered",
@@ -66,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\css\\UserForm.css",
+      "SourceId": "PrestoTraxSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\",
+      "BasePath": "_content/PrestoTraxSite",
+      "RelativePath": "css/UserForm.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\UserForm.css"
     },
     {
       "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\favicon.ico",
@@ -134,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\x-mark-16.png"
+    },
+    {
+      "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\js\\MapJS.js",
+      "SourceId": "PrestoTraxSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\",
+      "BasePath": "_content/PrestoTraxSite",
+      "RelativePath": "js/MapJS.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\MapJS.js"
     },
     {
       "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\js\\site.js",

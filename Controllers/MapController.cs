@@ -27,13 +27,17 @@ namespace PrestoTraxSite.Controllers
         [Route("/Map/GetRecordsAsync")]
         public async Task<List<RecordModel>> GetRecordsAsync()
         {
-            List<RecordModel> userRecords = await _recordService.GetUserRecords(8);
+            List<RecordModel> userRecords = await _recordService.GetUserRecords((int)HttpContext.Session.GetInt32("UUID"));
             return userRecords;
         }
 
         public async Task<IActionResult> GetMapComponent()
         {
-            List<RecordModel> userRecords = await _recordService.GetUserRecords(8);
+            List<RecordModel> userRecords = await GetRecordsAsync();
+            //if (userRecords.Count == 0)
+            //{
+            //    throw new Exception("No records found");
+
             return PartialView("_MapComponent", userRecords);
         }
 

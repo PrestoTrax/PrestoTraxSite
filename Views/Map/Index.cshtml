@@ -2,6 +2,7 @@
 <html>
     <head>
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+        <script src='~/js/MapJS.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
         <style>
             #map {
@@ -25,6 +26,10 @@
     </head>
     <body>
         <div id="map"></div>
+        
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @if (@Model.Count >= 1)
+    {
         <div id="dynaMap">
             @{await Html.RenderPartialAsync("_MapComponent", @Model);}
         </div>
@@ -39,7 +44,6 @@
             <p id="currentLocation"></p>
         </div>
         <button id="centerButton" onclick="goToCenter()">Jump to Device Location</button>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript">
             mapboxgl.accessToken = 'pk.eyJ1IjoibWF4MW11czciLCJhIjoiY2wxY3ZrNm5iMGJsODNibXJwaXF0ZzhnbCJ9.GcVTiVAeOU0yQPPWiT-Lww';
             var map = new mapboxgl.Map({
@@ -72,17 +76,22 @@
                 }
             }
             function getCurrent(records){
-                if(markerArray.length > 0){
-                    for(let i = 0; i < markerArray.length; i++){
-                        markerArray[i].remove();
+                if(records.length > 0){
+                    if(markerArray.length > 0){
+                        for(let i = 0; i < markerArray.length; i++){
+                            markerArray[i].remove();
+                        }
                     }
-                }
-                //console.log(map.listImages());
-                marker.setLngLat([records[0].deviceLongitude, records[0].deviceLatitude]);
+                    //console.log(map.listImages());
+                    marker.setLngLat([records[0].deviceLongitude, records[0].deviceLatitude]);
                 
-                currLoc = [records[0].deviceLongitude, records[0].deviceLatitude];
-                plotRecentLocs(records);
-                //console.log(currLoc);
+                    currLoc = [records[0].deviceLongitude, records[0].deviceLatitude];
+                    plotRecentLocs(records);
+                    //console.log(currLoc);
+                }
+                else{
+                    throw new Error("No records found");
+                }
             }
             
             function goToCenter(){
@@ -90,7 +99,7 @@
                 console.log(currLoc);
                 map.panTo(currLoc);
             }
-            
+
             function loadMap() {
                 $.ajax({
                     url: '@Url.Action("GetRecordsAsync", "Map")',
@@ -98,29 +107,29 @@
                     cache: false,
                     async: true,
                     //data: { id: "frmUser" },
-                    success: function(result){
+                    success: function (result) {
                         getCurrent(result);
                     }
                 });
-
-            $.ajax({
-                url: '@Url.Action("GetMapComponent", "Map")',
-                type: 'get',
-                cache: false,
-                async: true,
-                //data: { id: "frmUser" },
-                success: function(result){
-                    console.log("refreshTabl");
-                    $("#dynaMap").html(result);
-                    //$('#dynaMap').load(result);
-                }
-            });
+                
+                $.ajax({
+                    url: '@Url.Action("GetMapComponent", "Map")',
+                    type: 'get',
+                    cache: false,
+                    async: true,
+                    //data: { id: "frmUser" },
+                    success: function (result) {
+                        console.log("refreshTabl");
+                        $("#dynaMap").html(result);
+                        //$('#dynaMap').load(result);
+                    }
+                });
             }
             
             $(document).ready(function(){
                 loadMap();
                 function RefreshPartial(){
-                    //this will wait 3 seconds and then fire the load partial function
+                    //this will wait 10 seconds and then fire the load partial function
                     setTimeout(function(){
                         loadMap();
                         //recall this function so that it will continue to loop
@@ -128,9 +137,14 @@
                     }, 10000);
                 }
                 //initialize the loop
-            RefreshPartial();
+                RefreshPartial();
             
             }); 
         </script>
+     }
+     @if(@Model.Count <= 0)
+     {
+         <h1>There is no device associated with this account or this account's service has been terminated.</h1>
+     }
     </body>
 </html>

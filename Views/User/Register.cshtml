@@ -1,0 +1,12 @@
+﻿@model ResultModel
+<html>
+    <head>
+        @{ViewBag.Title="Registration Page";}
+    </head>
+    <body>
+    @{
+        await Html.RenderPartialAsync("_RegisterForm", @Model);
+    }
+    
+    </body>
+</html>

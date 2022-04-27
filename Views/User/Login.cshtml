@@ -1,0 +1,12 @@
+﻿@model ResultModel
+<html>
+    <head>
+        @{ViewBag.Title="Login Page";}
+    </head>
+    <body>
+    @{
+        await Html.RenderPartialAsync("_LoginForm", @Model);
+    }
+    
+    </body>
+</html>

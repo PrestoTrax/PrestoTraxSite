@@ -1,0 +1,26 @@
+﻿.formLabel{
+    margin: auto;
+}
+.formInput{
+    max-width: 30%;
+    min-width: 150px;
+    margin: auto;
+}
+
+.space{
+    margin-top: 10%;    
+}
+
+.small-space {
+    margin-top: 5%;
+}
+
+.form-text{
+    font-size: larger;
+}
+
+.center-text {
+    align-items:center;
+    text-align: center;
+    align-content: center;
+}

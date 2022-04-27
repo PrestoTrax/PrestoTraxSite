@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
 using PrestoTraxSite.Models;
-using PrestoTraxSite.Models.API_Results;
+using PrestoTraxSite.Models.Responses;
 using System.Text;
 using System.Net.Http;
+using PrestoTraxSite.Models.API_Results;
 
 namespace PrestoTraxSite.Services.Data
 {
@@ -66,10 +67,83 @@ namespace PrestoTraxSite.Services.Data
             {
                 throw new Exception("Could not authenticate user");
             }
+            //Console.WriteLine(response
+        }
+        public async Task<ResultModel> AuthenticateUser(string username, string password)
+        {
+            dynamic person = new
+            {
+                password = password,
+                username = username
+            };
+            string personData = JsonConvert.SerializeObject(person);
+            var data = new StringContent(personData, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync("https://prestoapi.azurewebsites.net/users/login", data);
+            string content = await response.Content.ReadAsStringAsync();
+            
+            if (response.IsSuccessStatusCode)
+            {
+                SuccessResultModel result = JsonConvert.DeserializeObject<UserResultModel>(content);
+                return result;
+            }
+            else
+            {
+                ErrorResultModel result = JsonConvert.DeserializeObject<ErrorResultModel>(content);
+                Console.WriteLine(result.ErrorType);
+                return result;
+            }
             //Console.WriteLine(response);
-
-
         }
 
+        public async Task<ResultModel> RegisterUser(UserModel user)
+        {
+            dynamic person = new
+            {
+                email = user.Email,
+                password = user.Password,
+                username = user.Username
+            };
+            string personData = JsonConvert.SerializeObject(person);
+            var data = new StringContent(personData, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync("https://prestoapi.azurewebsites.net/users/new", data);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                ResultModel result = JsonConvert.DeserializeObject<UserResultModel>(content);
+                return result;
+            }
+            else
+            {
+                ErrorResultModel result = JsonConvert.DeserializeObject<ErrorResultModel>(content);
+                Console.WriteLine(result.ErrorType);
+                return result;
+            }
+            //Console.WriteLine(response);
+        }
+        public async Task<ResultModel> RegisterUser(string email, string username, string password)
+        {
+            dynamic person = new
+            {
+                email = email,
+                password = password,
+                username = username
+            };
+            string personData = JsonConvert.SerializeObject(person);
+            var data = new StringContent(personData, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync("https://prestoapi.azurewebsites.net/users/new", data);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                ResultModel result = JsonConvert.DeserializeObject<UserResultModel>(content);
+                return result;
+            }
+            else
+            {
+                ErrorResultModel result = JsonConvert.DeserializeObject<ErrorResultModel>(content);
+                Console.WriteLine(result.ErrorType);
+                return result;
+            }
+            //Console.WriteLine(response);
+        }
     }
 }

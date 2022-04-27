@@ -18,19 +18,19 @@ namespace PrestoTraxSite.Controllers
             _userService = new UserDataService();
         }
 
-        public async Task<IActionResult> Login()
-        {
-            ResultModel result = await _userService.AuthenticateUser(new UserModel(-1, "Mackslemus1", null, "G00dP@ssw0rd"));
-            if(result.Code < 400)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return RedirectToAction("Error", "Home");
-            }
+        //public async Task<IActionResult> Login()
+        //{
+        //    ResultModel result = await _userService.AuthenticateUser(new UserModel(-1, "Mackslemus1", null, "G00dP@ssw0rd"));
+        //    if(result.Code < 400)
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Error", "Home");
+        //    }
             
-        }
+        //}
 
         public IActionResult Index()
         {
