@@ -25,11 +25,12 @@
         </style>
     </head>
     <body>
-        <div id="map"></div>
+        
         
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @if (@Model.Count >= 1)
     {
+        <div id="map"></div>
         <div id="dynaMap">
             @{await Html.RenderPartialAsync("_MapComponent", @Model);}
         </div>
