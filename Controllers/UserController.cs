@@ -51,6 +51,9 @@ namespace PrestoTraxSite.Controllers
             ResultModel result = await _dataService.RegisterUser(Request.Form["email"], Request.Form["username"], Request.Form["password"]);
             if (result.GetType() == typeof(ErrorResultModel))
             {
+                ViewData["email"] = Request.Form["email"];
+                ViewData["username"] = Request.Form["username"];
+                ViewData["password"] = Request.Form["password"];
                 return View("Register", result);
             }
             else

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zdvZf/s3dM5q3PUa98DN9XDQTBez2r2qcgMg8LYXmGE=",
+  "Hash": "F7BS1RSkLpRYqD/rz0axrs0Mm2OTNVIanMaqFVKlXNA=",
   "Source": "PrestoTraxSite",
   "BasePath": "_content/PrestoTraxSite",
   "Mode": "Default",
@@ -168,23 +168,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\x-mark-16.png"
-    },
-    {
-      "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\js\\MapJS.js",
-      "SourceId": "PrestoTraxSite",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\",
-      "BasePath": "_content/PrestoTraxSite",
-      "RelativePath": "js/MapJS.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\MapJS.js"
     },
     {
       "Identity": "D:\\Everything\\CodingForFun\\PrestoTraxSite\\wwwroot\\js\\site.js",

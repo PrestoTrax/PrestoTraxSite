@@ -24,6 +24,8 @@ namespace PrestoTraxSite.Controllers
             //Console.WriteLine($"{location.Longitude}, {location.Latitude}");
             return View(userRecords);
         }
+        
+        [HttpGet]
         [Route("/Map/GetRecordsAsync")]
         public async Task<List<RecordModel>> GetRecordsAsync()
         {
