@@ -1,4 +1,4 @@
-﻿@model List<RecordModel>
+﻿@model List<DeviceModel>
 <html>
     <head>
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
@@ -12,16 +12,13 @@
                 max-height: 1500px;
                 min-width: 625px;
                 max-width: 2700px;
-                display: inline-block;
+                display: block;
             }
             img{
                 width: 5px;
                 height: 5px;
             }
-            #dynaMap {
-                display:inline-block; 
-                float: right;
-            }
+
         </style>
     </head>
     <body>
@@ -30,10 +27,12 @@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @if (@Model.Count >= 1)
     {
-        <div id="map"></div>
         <div id="dynaMap">
             @{await Html.RenderPartialAsync("_MapComponent", @Model);}
-        </div>
+        </div>        
+        <br />
+        <div id="map"></div>
+        
         <div>
             <label for="currentLocMarker">Recent Locations:</label>
             <img src="../images/black-x.png" id="currentLocMarker" />
@@ -53,7 +52,8 @@
                     center: [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude],
                     zoom: 15
             });
-            var marker = new mapboxgl.Marker({color: "#ED0000"}).setLngLat([@Model[0].DeviceLongitude, @Model[0].DeviceLatitude]).addTo(map);
+            let markerArray = [];
+            
             var img = document.createElement('img');
             img.src="../images/x-mark-16.png";
             var centerMarker = new mapboxgl.Marker(img).setLngLat(map.getCenter()).addTo(map);
@@ -67,34 +67,34 @@
             });
             
             let currLoc = [@Model[0].DeviceLongitude, @Model[0].DeviceLatitude];
-            let markerArray = [];
-            function plotRecentLocs(records){
+
+            function plotRecentLocs(devices){
                 markerArray = [];
-                for(let i = 0; i < records.length; i++) {
-                    img = document.createElement('img');
-                    img.src="../images/black-x.png";
-                    markerArray.push(new mapboxgl.Marker(img).setLngLat([records[i].deviceLongitude, records[i].deviceLatitude]).addTo(map));
+                for(let i = 0; i < devices.length; i++) {
+                    console.log(devices[i].deviceLongitude);
+                    console.log(devices[i].deviceLatitude);
+                    markerArray.push(new mapboxgl.Marker().setLngLat([devices[i].deviceLongitude, devices[i].deviceLatitude]).addTo(map));
                 }
             }
-            function getCurrent(records){
-                if(records.length > 0){
+
+            function getCurrent(devices){
+                if(devices.length > 0){
                     if(markerArray.length > 0){
                         for(let i = 0; i < markerArray.length; i++){
                             markerArray[i].remove();
                         }
                     }
                     //console.log(map.listImages());
-                    marker.setLngLat([records[0].deviceLongitude, records[0].deviceLatitude]);
                 
-                    currLoc = [records[0].deviceLongitude, records[0].deviceLatitude];
-                    plotRecentLocs(records);
+                    currLoc = [devices[0].deviceLongitude, devices[0].deviceLatitude];
+                    plotRecentLocs(devices);
                     //console.log(currLoc);
                 }
                 else{
                     throw new Error("No records found");
                 }
             }
-            
+
             function goToCenter(){
                 console.log('click');
                 console.log(currLoc);
@@ -103,7 +103,7 @@
 
             function loadMap() {
                 $.ajax({
-                    url: '@Url.Action("GetRecordsAsync", "Map")',
+                    url: '@Url.Action("GetDevicesAsync", "Map")',
                     type: 'get',
                     cache: false,
                     async: true,

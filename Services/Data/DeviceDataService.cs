@@ -34,5 +34,20 @@ namespace PrestoTraxSite.Services.Data
             }
             
         }
+
+        public async Task<List<DeviceModel>> GetUserDeviceInfo(int id)
+        {
+            var response = _client.GetAsync($"/devices/user/{id}").Result;
+            List<DeviceModel> devices;
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var res = JsonConvert.DeserializeObject<DeviceResultModel>(content);
+                //Console.WriteLine(res);
+                devices = res.QueryResult;
+                return devices;
+            }
+            return new List<DeviceModel>();
+        }
     }
 }

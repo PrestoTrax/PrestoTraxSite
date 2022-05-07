@@ -1,4 +1,4 @@
-﻿@model List<RecordModel>
+﻿@model List<DeviceModel>
 
 <html>
     <head>
@@ -6,15 +6,13 @@
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
     <style>
         #LocationTable {
-            text-align: center;
             position: relative;
-            border-collapse: collapse;
-            top: 15%;
-            right: 10%;
-            min-height: fit-content;
-            max-height: fit-content;
-            min-width: fit-content;
-            display:inline-block
+            max-width: 80%;
+            max-height: 20%;
+            overflow-x: auto;
+            overflow-y: auto;
+            text-align: center;
+            display: block;
         }
         #recentLocations {
             display:inline-block; float: right;
@@ -26,39 +24,38 @@
     </head>
     <body>
 
-        
-        <div id="recentLocations">
             <table id="LocationTable">
-                <colgroup>
-                    <col span="1" style="width:15%"/>
-                    <col span="1" style="width:25%"/>
-                    <col span="1" style="width:25%"/>
-                    <col span="1" style="width:30%"/>
-                </colgroup>
-                <thead>
-                    <tr>
-                        <td colspan="4">This table holds the recent locations your device has been(up to 20).</td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
-                        <th>Pinged At</th>
-                    </tr>
-                </thead>
+                <tr>
+                    <th></th>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <th>Device @(i + 1)</th>
+                    }
+                </tr>
                 <tbody>
-                @for(int i = 0; i < Model.Count; i++)
-                {
                     <tr>
-                        <td>@(i+1)</td>
-                        <td>@Model[i].DeviceLatitude</td>
-                        <td>@Model[i].DeviceLongitude</td>
-                        <td>@(Model[i].CreatedAt.ToLocalTime().ToString())</td>
+                        <td>Latitude: </td>
+                        @for(int i = 0; i < Model.Count; i++)
+                        {
+                            <td>@Model[i].DeviceLatitude</td>
+                        }
                     </tr>
-                }
+                    <tr>
+                        <td>Longitude: </td>
+                        @for(int i = 0; i < Model.Count; i++)
+                        {
+                            <td>@Model[i].DeviceLongitude</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>Moving: </td>
+                        @for(int i = 0; i < Model.Count; i++)
+                        {
+                            <td>@Model[i].Moving</td>
+                        }
+                    </tr>
                 </tbody>
             </table>
-        </div>
         <script>
             
         </script>
