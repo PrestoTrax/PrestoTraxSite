@@ -13,7 +13,6 @@ namespace PrestoTraxSite.Services.Business
         /// <summary>
         /// 
         /// </summary>
-        /// <todo>Add IsMoving property to RecordModel class</todo>
         /// <param name="model">The DeviceModel object to be updated</param>
         /// <returns>The updated deviceModel</returns>
         public async Task PopulateRecords(DeviceModel model)
@@ -27,10 +26,16 @@ namespace PrestoTraxSite.Services.Business
                     model.Records.Add(record);
                 }
             }
-
-            RecordModel recentRecord = model.Records[0] ??= new(-1, -1, -1, false, new LocationModel("invalid latitude found", "no longitude found"), DateTime.Now);
-            model.Location = recentRecord.Location;
-            model.Moving = CheckMoving(model);
+            try
+            {
+                RecordModel recentRecord = model.Records[0] ??= new(-1, -1, -1, false, new LocationModel("invalid latitude found", "no longitude found"), DateTime.Now);
+                model.Location = recentRecord.Location;
+                model.Moving = CheckMoving(model);
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+                model.Location = new LocationModel("invalid latitude found", "no longitude found");
+            }
             //model.IsMoving = recentRecord.IsMoving;
 
             //return model;
