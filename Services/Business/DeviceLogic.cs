@@ -18,7 +18,6 @@ namespace PrestoTraxSite.Services.Business
         public async Task PopulateRecords(DeviceModel model)
         {
             model.Records ??= new List<RecordModel>();
-            Console.WriteLine(model.DeviceId);
             foreach (RecordModel record in await _dao.GetDeviceRecords(model.DeviceId))
             {
                 if (!model.Records.Contains(record))
@@ -51,8 +50,6 @@ namespace PrestoTraxSite.Services.Business
 
         public bool CheckMoving(DeviceModel model)
         {
-            Console.WriteLine(model.DeviceLatitude);
-            Console.WriteLine(model.DeviceLongitude);
             double LocSum1 = double.Parse(model.DeviceLatitude) + double.Parse(model.DeviceLongitude);
             double LocSum2 = double.Parse(model.Records[0].DeviceLatitude) + double.Parse(model.Records[0].DeviceLongitude);
             if (Math.Abs(LocSum1 - LocSum2) > 0.0003)

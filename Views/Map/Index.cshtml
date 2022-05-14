@@ -70,8 +70,6 @@
             function plotRecentLocs(devices){
                 markerArray = [];
                 for(let i = 0; i < devices.length; i++) {
-                    console.log(devices[i].deviceLongitude);
-                    console.log(devices[i].deviceLatitude);
                     markerArray.push(new mapboxgl.Marker().setLngLat([devices[i].deviceLongitude, devices[i].deviceLatitude]).addTo(map));
                 }
             }
